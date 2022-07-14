@@ -1,6 +1,7 @@
 TOP ?= ..
 
 DIRS :=
+DIRS += gpio_isr
 DIRS += gpu
 DIRS += gator
 DIRS += wifi
