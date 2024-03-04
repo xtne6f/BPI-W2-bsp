@@ -49,7 +49,8 @@ ifneq ($(CONFIG_MACH_RTK1195),)
 	_CROSS=arm-linux-gnueabihf-
 endif
 
-DIRS=$(USBDIRS) $(SDIODIRS) $(PCIDIRS)
+#DIRS=$(USBDIRS) $(SDIODIRS) $(PCIDIRS)
+DIRS=rtl8192ee rtl8812ae
 
 .PHONY: all clean $(DIRS)
 
