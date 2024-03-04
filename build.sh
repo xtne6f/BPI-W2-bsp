@@ -28,18 +28,18 @@ R="${SD}/BPI-ROOT"
 	## create SD dirs (100MB, BPI-BOOT, BPI-ROOT) 
 	#
 	mkdir -p $SD
-	mkdir -p $U
+	#mkdir -p $U
 	mkdir -p $B
 	mkdir -p $R
 	#
 	## copy files to 100MB
 	#
-	cp -a /tmp/${board}/*.img.gz $U
+	#cp -a /tmp/${board}/*.img.gz $U
 	#
 	## copy files to BPI-BOOT
 	#
-	mkdir -p $B/bananapi/${board}
-	cp -a $T/${BPIPACK}/${BPISOC}/${TARGET_PRODUCT}/configs/default/linux $B/bananapi/${board}/
+	mkdir -p $B/bananapi/${board}/linux/dtb
+	#cp -a $T/${BPIPACK}/${BPISOC}/${TARGET_PRODUCT}/configs/default/linux $B/bananapi/${board}/
 	cp -a $T/${BPILINUX}/arch/arm64/boot/Image $B/bananapi/${board}/linux/uImage
 	cp -a $T/${BPILINUX}/arch/arm64/boot/dts/realtek/rtd129x/*.dtb $B/bananapi/${board}/linux/dtb
 	cp -a $T/${BPILINUX}/arch/arm64/boot/dts/realtek/rtd129x/rtd-1296-bananapi-w2-2GB-HDMI.dtb $B/bananapi/${board}/linux/bpi-w2.dtb
@@ -51,8 +51,8 @@ R="${SD}/BPI-ROOT"
 	#
 	## copy files to BPI-ROOT
 	#
-	mkdir -p $R/usr/lib/u-boot/bananapi/${board}
-	cp -a $U/*.gz $R/usr/lib/u-boot/bananapi/${board}/
+	#mkdir -p $R/usr/lib/u-boot/bananapi/${board}
+	#cp -a $U/*.gz $R/usr/lib/u-boot/bananapi/${board}/
 	rm -rf $R/lib/modules
 	mkdir -p $R/lib/modules
 	cp -a $T/${BPILINUX}/output/lib/modules/${kernel} $R/lib/modules
@@ -64,7 +64,7 @@ R="${SD}/BPI-ROOT"
 	#(cd $R ; mv lib/modules/${kernel}/kernel/net $R/net)
 	(cd $R ; tar czvf $SD/${kernel}.tgz lib/modules)
 	#(cd $R ; mv $R/net lib/modules/${kernel}/kernel/net)
-	(cd $R ; tar czvf $SD/BOOTLOADER-${board}.tgz usr/lib/u-boot/bananapi)
+	#(cd $R ; tar czvf $SD/BOOTLOADER-${board}.tgz usr/lib/u-boot/bananapi)
 
 	return #SKIP
 }
@@ -109,7 +109,7 @@ if [ -z "$MODE" ]; then
 	read -p "Please choose a mode(1-7): " mode
 	echo
 else
-	mode=1
+	mode=$MODE
 fi
 
 if [ -z "$mode" ]; then

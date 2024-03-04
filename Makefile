@@ -28,15 +28,14 @@ all: bsp
 clean: u-boot-clean kernel-clean
 	rm -f chosen_board.mk env.sh
 
-pack: rt-pack
-	$(Q)scripts/mk_pack.sh
+pack:
+	@echo "$@ does nothing."
 
 u-boot: 
-	$(Q)$(MAKE) -C u-boot-rt $(UBOOT_CONFIG) CROSS_COMPILE=$(U_CROSS_COMPILE)
-	$(Q)$(MAKE) -C u-boot-rt all CROSS_COMPILE=$(U_CROSS_COMPILE) BUILD_BOOTCODE_ONLY=true
+	@echo "$@ does nothing."
 
 u-boot-clean:
-	$(Q)$(MAKE) -C u-boot-rt CROSS_COMPILE=$(U_CROSS_COMPILE) distclean
+	@echo "$@ does nothing."
 
 $(K_DOT_CONFIG): linux-rt
 	$(Q)$(MAKE) -C linux-rt ARCH=arm64 $(KERNEL_CONFIG)
